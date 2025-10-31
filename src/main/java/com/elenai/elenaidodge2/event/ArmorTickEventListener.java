@@ -7,6 +7,7 @@ import java.util.List;
 import com.elenai.elenaidodge2.init.EnchantmentInit;
 import com.elenai.elenaidodge2.init.PotionInit;
 import com.elenai.elenaidodge2.integration.ConstructsArmory;
+import com.elenai.elenaidodge2.ModConfig;
 import com.elenai.elenaidodge2.network.PacketHandler;
 import com.elenai.elenaidodge2.network.message.SWeightMessage;
 import com.elenai.elenaidodge2.util.ClientStorage;
@@ -33,7 +34,7 @@ public class ArmorTickEventListener {
 	@SubscribeEvent
 	public void onArmorUpdate(TickEvent.ClientTickEvent event) {
 
-		if (event.phase == TickEvent.Phase.END && event.side.isClient() && ClientStorage.weightValues != null) {
+		if (event.phase == TickEvent.Phase.END && event.side.isClient() && ClientStorage.weightValues != null && ModConfig.common.balance.enableArmorWeights) {
 
 			EntityPlayer player = Minecraft.getMinecraft().player;
 			if (player != null) {

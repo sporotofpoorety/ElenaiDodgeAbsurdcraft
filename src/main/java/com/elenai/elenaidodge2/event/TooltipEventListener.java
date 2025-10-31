@@ -64,20 +64,20 @@ public class TooltipEventListener {
 	@SideOnly(Side.CLIENT)
 	public void makeTooltip(ItemTooltipEvent event) {
 		if(!event.getItemStack().isEmpty() && event.getItemStack().getItem() instanceof ItemArmor && ClientStorage.weightValues != null) {
-			if(ModConfig.client.hud.tooltips) {
-			int weight =  getWeight(event.getItemStack());
-			if(weight > 0) {
-			int len = (int) Math.ceil((double) weight / divisor);
-			
-			StringBuilder s = new StringBuilder("'");
-			for(int i = 0; i < len; i++)
-				s.append("  ");
-			
-			List<String> tooltip = event.getToolTip();
-			if(tooltip.isEmpty())
-				tooltip.add(s.toString());
-			else tooltip.add(1, s.toString());
-			}
+			if(ModConfig.client.hud.tooltips && ModConfig.common.balance.enableArmorWeights) {
+			    int weight =  getWeight(event.getItemStack());
+			    if(weight > 0) {
+			        int len = (int) Math.ceil((double) weight / divisor);
+			        
+			        StringBuilder s = new StringBuilder("'");
+			        for(int i = 0; i < len; i++)
+				        s.append("  ");
+			        
+			        List<String> tooltip = event.getToolTip();
+			        if(tooltip.isEmpty()) {
+				        tooltip.add(s.toString());
+                    } else { tooltip.add(1, s.toString()); }
+			    }
 			}
 		}
 	}
@@ -85,7 +85,7 @@ public class TooltipEventListener {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void renderTooltip(RenderTooltipEvent.PostText event) {
-		if (!event.getStack().isEmpty() && event.getStack().getItem() instanceof ItemArmor && ModConfig.client.hud.tooltips) {
+		if (!event.getStack().isEmpty() && event.getStack().getItem() instanceof ItemArmor && ModConfig.client.hud.tooltips && ModConfig.common.balance.enableArmorWeights) {
 
 			GlStateManager.pushMatrix();
 			GlStateManager.color(1F, 1F, 1F);

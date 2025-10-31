@@ -2,6 +2,7 @@ package com.elenai.elenaidodge2.enchantment;
 
 import com.elenai.elenaidodge2.ElenaiDodge2;
 import com.elenai.elenaidodge2.init.EnchantmentInit;
+import com.elenai.elenaidodge2.ModConfig;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -15,7 +16,9 @@ public class EnchantmentLightweight extends Enchantment {
 		this.setName("lightweight");
 		this.setRegistryName(new ResourceLocation(ElenaiDodge2.MODID + ":lightweight"));
 
-		EnchantmentInit.ENCHANTMENTS.add(this);
+		if(ModConfig.common.balance.enableArmorWeights) {
+            EnchantmentInit.ENCHANTMENTS.add(this);
+        }
 	}
 
 	@Override

@@ -113,6 +113,14 @@ public class ModConfig {
 			@Comment("Whether the player can dodge whilst airborne.")
 			public boolean enableWhilstAirborne = false;
 
+            @Name("Dodge Scaling")
+            @Comment("Whether dodges should scale with player movement speed.")
+            public boolean enableMovementScaling = true;
+
+            @Name("Armors have Weight")
+            @Comment("Whether armors have weights that reduce max dodge capacity.")
+            public boolean enableArmorWeights = true;
+
 			@Name("Invincibility Ticks")
 			@Comment("How many in-game ticks of invincibility the player has after dodging. 20 ticks is 1 second.")
 			@RangeInt(min = 0, max = 100)

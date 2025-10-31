@@ -24,6 +24,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -113,7 +114,11 @@ public class Utils {
 	 * @side Server
 	 */
 	public static double calculateForce(EntityPlayer player) {
-		return ModConfig.common.balance.force;
+		double force = ModConfig.common.balance.force;
+        if(ModConfig.common.balance.enableMovementScaling) {
+            force *= (player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() / 0.1);
+        }
+        return force;
 	}
 
 	
